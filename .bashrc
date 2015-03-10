@@ -20,7 +20,7 @@ cl() {
 POWERLINE_CONFIG_COMMAND=/Users/peter/Library/Python/2.7/bin/powerline-config
 export POWERLINE_CONFIG_COMMAND
 
-alias vummath='~/.my_scripts/vummath.sh'
+alias vummath='~/.bin/vummath.sh'
 alias ll='ls -l'
 
 powerline-daemon -q
@@ -29,4 +29,4 @@ POWERLINE_BASH_SELECT=1
 . /Users/peter/Library/Python/2.7/lib/python/site-packages/powerline/bindings/bash/powerline.sh
 
 #Start tmux sessions if not already in existence
-~/.my_scripts/tmux_start.sh
+~/.bin/tmux_start.sh
