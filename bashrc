@@ -7,26 +7,33 @@ export LSCOLORS=GxFxCxDxBxegedabagaced
 
 export EDITOR="vim"
 
-genpasswd() {
-	local l=$1
-       	[ "$l" == "" ] && l=16
-      	tr -dc A-Za-z0-9_ < /dev/urandom | head -c ${l} | xargs
-}
+if [ $(uname -s) = "Darwin" ]
+then
+	POWERLINE_CONFIG_COMMAND=/Users/peter/Library/Python/2.7/bin/powerline-config
+	export POWERLINE_CONFIG_COMMAND
+fi
 
-cl() {
-	cd $1; ls
-}
+#alias vummath='~/.bin/vummath.sh'
+if [ $(uname -s) = "Darwin" ]
+then
+	alias ls='ls -G'
+	alias ll='ls -alG'
+elif [ $(uname -s) = "Linux" ]
+then
+	alias ls='ls --color=auto'
+	alias ll-'ls -al --color=auto'
+fi
 
-POWERLINE_CONFIG_COMMAND=/Users/peter/Library/Python/2.7/bin/powerline-config
-export POWERLINE_CONFIG_COMMAND
-
-alias vummath='~/.bin/vummath.sh'
-alias ll='ls -l'
-
-powerline-daemon -q
-POWERLINE_BASH_CONTINUATION=1
-POWERLINE_BASH_SELECT=1
-. /Users/peter/Library/Python/2.7/lib/python/site-packages/powerline/bindings/bash/powerline.sh
+if [ $POWERLINE_START = "TRUE" ]
+then
+	powerline-daemon -q
+	POWERLINE_BASH_CONTINUATION=1
+	POWERLINE_BASH_SELECT=1
+	if [ $(uname -s) = "Darwin" ]
+	then
+		. /Users/peter/Library/Python/2.7/lib/python/site-packages/powerline/bindings/bash/powerline.sh
+	fi
+fi
 
 #Start tmux sessions if not already in existence
-~/.bin/tmux_start.sh
+#~/.bin/tmux_start.sh
